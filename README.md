@@ -12,7 +12,7 @@ function sayItLoud() {
 sayItLoud();
 ```
 
-
+This still works because function declaration are hoisted. This means that when the program reads the code function declaration are read first, and then procceed to read the rest of the code in a contorl flow manner. 
 
 2. **Okay... so why does the code below throw an error?**
 ```javascript
@@ -25,7 +25,7 @@ function sayItLoud() {
 let greeting = "Hello"
 ```
 
-
+This does work but is giving you an error becuase the when the function was invoked it is tasked to log the variable `greeting`. But becuase `greeting` was not initalied before the function was called is runing into control flow issues. 
 
 3. **Mmhmmm... so what about this😰. What does the following code log? Why?**
 ```javascript
@@ -36,21 +36,22 @@ function sayItLoud() {
 var greeting = "Hello"
 ```
 
-
+This will log `Hello`. This is becuase hoisitng appies to two things. Hoisting apply to variables declared with `var` and function declaration. When the code ran it recogonises that the function `sayItLoud()` was initalied, after that it recognies that a the variable `greeting` also exsist. After hoisting the code ran and had the variable `greeting` stored  in memory and accessed it when the function `sayItLoud()` printed `greeting`. 
 
 4. **Why does the following block of code throw an error? Fix this without changing the variable declaration keyword.**
 ```javascript
 const isMaya🧘🏽‍♀️ = true;
-
 if (isMaya🧘🏽‍♀️) {
   let status = 'Everything is just fine';
+  console.log(status);
 } else {
   let status = 'Time to panic.'
+  console.log(status);
 }
 
-console.log(status);
+// console.log(status);
 ```
-
+This code throws an error becuase when the code is trying to log `status` is cant becuase status is block scoped. If we wanted to log the result we would place the log inside of the block.    
 
 
 5. **Why does the following block of code NOT throw an error?**
@@ -66,11 +67,11 @@ if (isLaishaOnTime) {
 console.log(status);
 ```
 
-
+This dosnt throw and error because the variable `status` was declared with the keyword var. Var even in a block becomes hoisted and "declared in the gloabale scope". 
 
 6. **In JavaScript, we can declare variables with `var`, `let`, and `const`. What are the differences between each? Be sure to comment on how each declaration impacts the _scope_, _reassignment_, and _hoisting_ of variables.**
 
-
+Varibales declared with the key word `var` are able to be reassigned and are the only key word that is hoisted. `Let` is able to be reassigned but can only live inside of its block. `Const` can only live inside of its block but can not be reassigned to a new value.  
 
 7. **Where does the following code throw an error? What type of error? Why?**
 ```javascript
@@ -78,9 +79,8 @@ let a = b;
 
 console.log(a);
 ```
-**tags:** #variableDeclaration
-**key:** "the variable `b` is not defined."
 
+This throws an error because you are trying to log a variable that points to a variable, but that variable has not been initalized. So you will get a variable that has not been declared yet.  
 
 
 8. **What is the value of `b` after this code runs? Explain why this is the case.**
@@ -92,8 +92,7 @@ a += 1;
 console.log(a);
 console.log(b);
 ```
-**tags:** #mutability
-**key:** "`b` points to the integer `1`, a primitive data type", "reassigning `a` has no effect on `b`" 
+The first console.log will log `2` because a += 1 is updating the variable. The second console.log will log `1` because variable `b` is gaining it value from a. 
 
 
 
@@ -104,9 +103,7 @@ let b = a;
 a.goals = "Cielo";
 console.log(b.goals);
 ```
-**tags:** #mutability
-**key:** "`b` points to the same object referenced by `a`"
-
+This will log `Cielo` because we initalied variable `b` with the value of `a`. Since variable `a` is an object when we are assign it to `b` we are using by-pass-reference. So when we reassign the value of `a` we also inpact the value of `b`. 
 
 
 10. **Where does the following code throw an error? What type of error? Why?**
@@ -116,9 +113,8 @@ bffs = 'Enmanuel Laisha Cielo';
 
 console.log(bffs);
 ```
-**tags**: #variableDeclaration #mutability #primitives
-**key:** "variables declared with `const` cannot be reassigned"
 
+This will give you a "cannot reassign a `const` variable." This is because const can not be reassigned in value.  
 
 
 11. **Wait, why doesn't the code below throw an error?! 🧐 What does this demonstrate?**
@@ -128,8 +124,7 @@ bffs.push('Cielo');
 
 console.log(bffs);
 ```
-**tags:** #mutability #objects
-**key:** "`bffs` was not reassigned", "JavaScript objects are mutable"
+Arrays can be considered objects. Object can be reassigned values even when they are declared with const. 
 
 
 
@@ -143,8 +138,7 @@ function say() {
 
 console.log(say);
 ```
-**tags**: #functionExecution #functionArguments
-**key:** "function was not invoked"
+This will log the `function:say`. This is because we are not invoking the function but only calling on the function name. If we wanted to invoke the function we would have placed `say()` inside of the console.log. 
 
 
 
@@ -156,15 +150,12 @@ function shoutOut() {
 
 shoutOut('Devonte');
 ```
-**tags:** #functionExecution #variableScope
-**key:** "arguments are optional", "extraneous arguments are ignored"
+"
 
 
 
 14. **What happens if a function is invoked with fewer arguments than there are parameters? Include a code snippet to illustrate.**
 
-**tags:** #functionExecution #functionArguments
-**key:** "missing parameters are set to `undefined`"
 
 
 
@@ -176,8 +167,7 @@ sum(1, 2, 10); // 13
 sum(5); // 5
 sum(100, 200, 800, 1, 1, 1); // 1103;
 ```
-**tags:** #functionExecution
-**key:** the array-like `argument` object, the ES6 rest parameter syntax
+
 
 
 
@@ -192,8 +182,7 @@ function shoutOut() {
 shoutOut();
 console.log(`The best designer in the room is ${theCreator}`.);
 ```
-**tags:** #variableScope
-**key:** "functions have access to variables defined in their local scope and all surrounding scopes"
+
 
 
 
@@ -209,8 +198,7 @@ function shoutOut() {
 shoutOut();
 console.log(`${theHustler} is also the hardest working person in the room.`);
 ```
-**tags:** #variableScope
-**key:** "lexical scope"
+
 
 
 
@@ -225,22 +213,18 @@ function hire(theCEO) {
 hire(theCEO);
 console.log(`I have no doubt that ${theCEO} will be running a company of his own very soon. I just hope that he will hire me when I need a job.`);
 ```
-**tags:** #variableScope
-**key:** "variable shadowing" the function declarations creates a _new_ local variable declaration for its parameter, `theCEO`."
 
 
 
 19. **What does it mean to _pass by value_? For what data types does JavaScript _pass by value_? Use a code snippet to illustrate.**
 
-**tags:** #mutability #functionExecution
-**key:** "primitive data types are passed by value"
+
 
 
 
 20. **What does it mean to _pass by reference_? For what data types does JavaScript  appear to _pass by reference_? Use a code snippet to illustrate.**
 
-**tags:** #mutability #functionExecution
-**key:** "JavaScript objects are passed by reference"
+
 
 
 
@@ -254,15 +238,13 @@ console.log(`I have no doubt that ${theCEO} will be running a company of his own
 let a = {};
 10 + a.x;      // Evaluates to NaN
 ```
-**tags:** #objects
-**key:** "undefined properties of objects return `undefined`"
+
 
 
 
 22. **What is the relationship between JavaScript Objects and JavaScript Arrays? We say a JavaScript Object is _empty_ if it has no properties of its own. We say that a JavaScript Array is _empty_ if it has no _elements_. How do we check for emptiness of JavaScript Objects? How do we check for emptiness of JavaScript Arrays. Use code snippets to illustrate your answer.**
 
-**tags:** #objects #arrays
-**key:** "JavaScript arrays are objects", "use `.length` to check for array emptiness", "use Object.keys(object) to check for object emptiness"
+
 
 
 
