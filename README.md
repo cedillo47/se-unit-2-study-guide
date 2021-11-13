@@ -282,8 +282,27 @@ The code above evaluates to not a number because when the code is exacuting it i
 
 22. **What is the relationship between JavaScript Objects and JavaScript Arrays? We say a JavaScript Object is _empty_ if it has no properties of its own. We say that a JavaScript Array is _empty_ if it has no _elements_. How do we check for emptiness of JavaScript Objects? How do we check for emptiness of JavaScript Arrays. Use code snippets to illustrate your answer.**
 
+The relationship between the two is that they are both objects and both use pass-by-referance. In order to check if an array is empty we can check it length. If the length if less than 1 or 0, then we know it empty. In order to check if an object it empty we can use `Object.keys().length` in order to get the keys in an array and then check it length. We would then check if this is equal to zero. If it does equal zero than we know its empty. 
 
 
+```javascript
+
+const object = {};
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+}
+```
+The code above will return true if the array is empty, knowing this we know that it in fact is empty.
+```javascript
+const arry = [];
+
+  const isArryEmpty = arry.length ? "not empty" : "empty"; 
+  
+console.log(isArryEmpty)
+
+```
+The code above is assign the value of isArryEmpty depening if `arry`s length. If the array length is `0` then is will assign the value of isArryEmpty to the string "empty". If the length is greater than 0 it will evaluate to true and assign the value of isArryEmpty to the string "not empty". 
 
 
 ## Problem Set

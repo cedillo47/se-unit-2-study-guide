@@ -1,4 +1,6 @@
-let a = {};
-10 + a.x;
 
-console.log(a)
+const arry = [];
+
+  const isArryEmpty = arry.length ? "not empty" : "empty"; 
+  
+console.log(isArryEmpty)
