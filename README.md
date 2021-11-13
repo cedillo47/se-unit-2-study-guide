@@ -150,24 +150,40 @@ function shoutOut() {
 
 shoutOut('Devonte');
 ```
-"
+When the code runs you are gonna log to the console `The flyest person in the room is Carmen!`. This is because we are calling the function. We passed an argument in the function but the function ignores that because we didnt specify any peramiters in the function. 
 
 
 
 14. **What happens if a function is invoked with fewer arguments than there are parameters? Include a code snippet to illustrate.**
 
+When we invoke a function with more parameters than there are arguments, only the parameters that share a one to one relationship with the argument will get used. The other values will be ignored. 
+```javascript
 
+function add(num1,num2){
+  console.log(num1 + num2)
+}
 
+add(1,2,3,4)
+```
+This code only adds 1 and 2. The rest on the peramiters are ingnored. 
 
 15. **What about extra parameters? How can we access them and use them to our advantage? Illustrate by writing a function that takes any number of integers as arguments and returns their sum.**
 
 Example:
 ```javascript
+function sum(...num){
+  let total = 0
+  for (let i = 0; i < num.length; i++){
+    total += num[i]
+  } return total
+} 
+
+
 sum(1, 2, 10); // 13
 sum(5); // 5
 sum(100, 200, 800, 1, 1, 1); // 1103;
 ```
-
+we can use the ...rest peramiters to be able to esentally add an endless number of peramiters. With the ...rest peramiters we will be able to access all of the perameters passed with just one argument in our function.  
 
 
 
@@ -182,8 +198,7 @@ function shoutOut() {
 shoutOut();
 console.log(`The best designer in the room is ${theCreator}`.);
 ```
-
-
+This will log `The best designer in the room is Peter.`. This is because when the function was invoked it reassigned the value of `theCreator` to `Peter`. Then when we logged the string it used the value of `theCreator`, which after the function is `Peter`, and logged `Peter`.  
 
 
 17. **What does the following code log? Why?**
@@ -198,7 +213,7 @@ function shoutOut() {
 shoutOut();
 console.log(`${theHustler} is also the hardest working person in the room.`);
 ```
-
+When the `shoutOut` function is invoked it will log `Paul is the hardest working person in the room.` This is because when the function ran it created a variable, `theHustler` and set its vlaue to `Paul`. This variable was then used in the next line when we accessed the value of `theHustler`. When the `console.log` ran it logged, `Laisha is also the hardest working person in the room.`. This is because we had already declared the variable `theHustler` in the gloabal scope, and used the balue of that when accessing the value of the `theHustler` for this string.   
 
 
 
@@ -214,17 +229,39 @@ hire(theCEO);
 console.log(`I have no doubt that ${theCEO} will be running a company of his own very soon. I just hope that he will hire me when I need a job.`);
 ```
 
-
+This will log the sting but where `theCEO` is, it will give us the value of undefined. This because even though we initalized it we didnt assign it a value. 
 
 19. **What does it mean to _pass by value_? For what data types does JavaScript _pass by value_? Use a code snippet to illustrate.**
 
+when something is refering to pass by value, it simply means that it makes a copy of what it refering to. This means that even when we reassign that variable it wont impact the varibale that we assigned to it. This is because it made a copy of the value of that variable in that point in time.  
 
+```javascript
+let bffs = 'Enmanuel Laisha';
 
+const leoBffs = bffs;
+
+bffs = "jordy"
+
+console.log(bffs);
+console.log(leoBffs)
+```
 
 
 20. **What does it mean to _pass by reference_? For what data types does JavaScript  appear to _pass by reference_? Use a code snippet to illustrate.**
 
+When something it pass by referance it means that it point to the variable, and uses the value of that variable as its own. This dosnt make a copy. Arrays and Objects are the two primitive types that are impacted by pass by refrence. 
+```javascript
+const arr1 = [1,2,3];
 
+const arr2 = arr1;
+
+arr1.push("Hello");
+arr2.push("leo")
+
+console.log(arr1);
+console.log(arr2)
+```
+In the example above we see that even though we only use the push method on `arr1` we also effect `arr2`. We can see that the same is true when we modify `arr2` we also effect `arr1`. No copies are made they are both pointing to the same spot in memory and are both simatisly using that spot as there refrence point. 
 
 
 
@@ -233,12 +270,13 @@ console.log(`I have no doubt that ${theCEO} will be running a company of his own
 ```javascript
 10 + a;        // ReferenceError: a is not defined
 ```
-
+In the code above We have not initalied `a` so we are not able to manipulate something that does not exsist. 
 ```javascript
 let a = {};
 10 + a.x;      // Evaluates to NaN
 ```
 
+The code above evaluates to not a number because when the code is exacuting it is taking in the value of `a`. The value of a is undefined, when we try to add the value of `a`, which is undefined, it will add `10` and `NaN` and that will return NaN. 
 
 
 

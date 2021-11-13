@@ -1,7 +1,4 @@
-let greeting = "What's up?";
+let a = {};
+10 + a.x;
 
-function say() {
- return `${greeting}! 🤟🏿`
-}
-
-console.log(say);
+console.log(a)
