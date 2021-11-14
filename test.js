@@ -59,12 +59,45 @@ function isLeapYear(year){
   }
 }
 
+function wordToDiget(string){
+ let eachWord = string.split(/([_\W])/);
+ let newS = "";
+ for (let word of eachWord){
+   if(word === 'zero'){
+     newS = newS + "0"
+   } else if (word === " "){
+     newS = newS + " "
+   } else if (word === 'one'){
+     newS = newS + "1"
+   } else if(word === 'two'){
+     newS = newS + "2"
+   } else if(word === 'three'){
+     newS = newS + "3"
+   }else if(word === 'four'){
+     newS = newS + "4"
+   }else if(word === 'five'){
+     newS = newS + "5"
+   }else if(word === 'six'){
+     newS = newS + "6"
+   }else if(word === 'seven'){
+     newS = newS + "7"
+   }else if(word === 'eight'){
+     newS = newS + "8"
+   }else if(word === 'nine'){
+     newS = newS + "9"
+   }
+   else {
+     newS = newS + word 
+   }
+  }
+   return newS
+}
 
 
 
-console.log(isLeapYear(1997))
-console.log(isLeapYear(1996))
-console.log(isLeapYear(1900))
-console.log(isLeapYear(2000))
+console.log(wordToDiget('Please call me at five five five one two three four. Thanks.'))
+// console.log(isLeapYear(1996))
+// console.log(isLeapYear(1900))
+// console.log(isLeapYear(2000))
 
 
