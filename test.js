@@ -36,4 +36,14 @@ for(let charachter of string){
  } return double
 }
 
-console.log(doubleConsonants("Aplle"))
+// console.log(doubleConsonants(" "))
+
+function reverse(string){
+  let reversed = '';
+  for(let i = string.length - 1 ; i >= 0; i--){
+    reversed = reversed + string[i]
+  }
+  return reversed
+}
+
+console.log(reverse('factor In spaces'))
