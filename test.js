@@ -93,9 +93,49 @@ function wordToDiget(string){
    return newS
 }
 
+function characteGenearator(player){
+ function randdie(){
+ let dice1 = Math.floor(Math.random() * 6) + 1
+ let dice2 = Math.floor(Math.random() * 6) + 1
+ let dice3 = Math.floor(Math.random() * 6) + 1
+ let dice4 = Math.floor(Math.random() * 6) + 1
+ // we have our 4 dice. //
+  let numsAdded = 0
+ if(dice1 < dice2 < dice3 < dice4){
+   numsAdded = numsAdded + dice2 + dice3 + dice4
+ }
+ else if(dice2 < dice3 < dice4 < dice1){
+  numsAdded = numsAdded + dice1 + dice3 + dice4
+ }
+ else if(dice3 < dice1 < dice2 < dice4){
+  numsAdded = numsAdded + dice1 + dice2 + dice4
+ }
+ else if(dice4 < dice1 < dice2 < dice3){
+ numsAdded = numsAdded + dice1 + dice2 + dice3
+ }
+ return numsAdded;
+};
+randdie();
+ let character = {
+ 'name' : player,
+ 'strength': randdie(),
+ 'dexterity' : randdie(),
+ 'constitution' : randdie(),
+ 'intelligence' : randdie(),
+ 'wisdom' : randdie(),
+ 'charisma' : randdie(),
+ 'hitpoints' : 0
+ };
+ // character['hitpoints'] =  10 + (2/(character['constitution'] - 10)
+ const construction =  character['constitution'] - 10;
+ const hit = construction / 2
+ const total = Math.floor(10 + hit)
+ character['hitpoints'] = total;
+ return character
+}
 
 
-console.log(wordToDiget('Please call me at five five five one two three four. Thanks.'))
+console.log(characteGenearator("gandolf"))
 // console.log(isLeapYear(1996))
 // console.log(isLeapYear(1900))
 // console.log(isLeapYear(2000))
